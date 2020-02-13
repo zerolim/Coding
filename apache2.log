@@ -1,0 +1,16 @@
+/var/log/apache2/*.log {
+        daily
+        missingok
+        rotate 30
+        compress
+        delaycompress
+        dateext
+        dateformat .%Y%m%d
+        notifempty
+        create 640 root adm
+        sharedscripts
+        postrotate
+               /etc/init.d/apache2 reload> /dev/null
+               sh /home/ubuntu/uploadtoS3/upapa
+        endscript
+}

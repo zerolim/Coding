@@ -1,0 +1,18 @@
+/var/log/vsftpd.log
+{
+        daily
+        rotate 30
+        compress
+        dateext
+        datefromat .%Y%m%d
+        delaycompress
+        notifempty
+        sharedscripts
+        create 640 root adm
+        missingok
+        notifempty
+        postrotate
+                /home/ubuntu/uploadtoS3
+        endscript
+
+}

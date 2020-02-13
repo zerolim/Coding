@@ -1,0 +1,18 @@
+/var/log/php7.3-fpm.log {
+        rotate 30
+        daily
+        missingok
+        notifempty
+        dateext
+        dateformat .%Y%m%d
+        delaycompress
+        compress
+        su root adm
+        postrotate
+                /etc/init.d/php7.3 reload > /dev/null
+                /usr/lib/php/php7.3-fpm-reopenlogs
+                sh /home/ubuntu/uploadtoS3/upupphp
+                sh /home/ubuntu/uploadtoS3/delete30
+
+        endscript
+}
